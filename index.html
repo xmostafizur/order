@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অর্ডার ডকুমেন্ট ডাউনলোড</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #4c669f, #3b5998, #192f6a);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            animation: bgFade 10s infinite alternate;
+        }
+
+        @keyframes bgFade {
+            0% { background-position: left; }
+            100% { background-position: right; }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            text-align: center;
+            width: 350px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .title {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            margin-bottom: 25px;
+            color: #f0f0f0;
+        }
+
+        form input {
+            padding: 12px;
+            width: 100%;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 25px;
+            text-align: center;
+            font-size: 16px;
+            outline: none;
+        }
+
+        form button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            background: #ff9800;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        form button:hover {
+            background: #e68900;
+            transform: translateY(-2px);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #downloadSection h2 {
+            margin-top: 20px;
+            color: #76ff03;
+            animation: bounce 1s infinite alternate;
+        }
+
+        .download-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 25px;
+            background-color: #00e676;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .download-btn:hover {
+            background-color: #00c853;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">অর্ডার ডকুমেন্ট ডাউনলোড</h1>
+        <p class="subtitle">আপনার অর্ডার আইডি দিন এবং ডকুমেন্ট ডাউনলোড করুন।</p>
+        
+        <form id="orderForm">
+            <input type="text" id="orderId" placeholder="অর্ডার আইডি (#3226428)" required>
+            <button type="submit">সাবমিট করুন</button>
+        </form>
+
+        <div id="downloadSection" class="hidden">
+            <h2>অভিনন্দন!</h2>
+            <p>আপনার ডকুমেন্ট প্রস্তুত:</p>
+            <a id="downloadLink" href="#" class="download-btn" download>ডাউনলোড করুন</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('orderForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const orderId = document.getElementById('orderId').value.trim();
+            const downloadSection = document.getElementById('downloadSection');
+            const downloadLink = document.getElementById('downloadLink');
+
+            if (orderId === '#3226428') {
+                // ডাউনলোড লিঙ্ক আপডেট করো
+                downloadLink.href = 'downloads/bangladesh-government-nid.pdf';
+                downloadSection.classList.remove('hidden');
+            } else {
+                alert('দুঃখিত! অর্ডার আইডি সঠিক নয়। দয়া করে সঠিক আইডি দিন।');
+                downloadSection.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
